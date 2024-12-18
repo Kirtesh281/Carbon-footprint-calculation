@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Report</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+
+        /* Report Container */
+        .report-container {
+            width: 80%;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        /* Footer Section */
+        .footer {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        /* Button Styling */
+        #btn2 {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #btn2 a {
+            text-decoration: none;
+            padding: 12px 25px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        #btn2 a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Carbon Footprint Report</h2>
+    <div class="report-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Emissions (kg CO2)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pollutant emissions from waste</td>
+                    <td>{{ result['waste'] }}</td>
+                </tr>
+                <tr>
+                    <td>Transport-generated pollutants</td>
+                    <td>{{ result['transport'] }}</td>
+                </tr>
+                <tr>
+                    <td>Emissions due to energy consumption</td>
+                    <td>{{ result['energy'] }}</td>
+                </tr>
+                <tr>
+                    <td class="highlight">Cumulative carbon impact</td>
+                    <td class="highlight">{{ result['total'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            Report generated on: <strong>{{ generated_date }}</strong>
+        </div>
+    </div>
+
+    <div id="btn2">
+        <a href="/download_pdf?energy={{ result['energy'] }}&transport={{ result['transport'] }}&waste={{ result['waste'] }}&total={{ result['total'] }}" target="_blank">Download PDF</a>
+    </div>
+</body>
+</html>
